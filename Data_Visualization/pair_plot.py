@@ -15,8 +15,7 @@ colors = {'Gryffindor': 'red', 'Slytherin': 'green', 'Hufflepuff': 'yellow', 'Ra
 
 sns.set_theme(style="ticks")
 pairplot = sns.pairplot(df_cleaned, hue='Hogwarts House', palette=colors, diag_kind='kde', plot_kws={'alpha':0.5})
-# 1. Ajuste la position de la grille pour laisser de l'espace à droite (ex: 15% de la figure)
-pairplot.fig.subplots_adjust(right=0.85)
+plt.subplots_adjust(left=0.044, bottom=0.052, right=0.993, top=0.986, wspace=0.308, hspace=0.440)
 
 # 2. Déplace la légende dans l'espace créé
 #    - bbox_to_anchor=(1.05, 0.5) positionne la légende à l'extérieur
