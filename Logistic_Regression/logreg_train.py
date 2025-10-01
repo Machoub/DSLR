@@ -37,7 +37,7 @@ class LogisticRegression:
             cost = self.cost_function(h, y)
             self.cost_history.append(cost)
 
-    def predict(self, X):
+    def score(self, X):
         linear_model = np.dot(X, self.weights) + self.bias
         h = self._sigmoid(linear_model)
         return np.where(h >= 0.5, 1, 0)
@@ -81,9 +81,9 @@ def main():
         y_test = (y_test == house).astype(int)
         model = LogisticRegression(learning_rate=0.1, n_iterations=1000)
         model.fit(x_train, y_train)
-        predictions = model.predict(x_test)
-        accuracy = np.mean(predictions == y_test)
-        print(f"Accuracy for {house}: {accuracy}")
+        predt = model.score(x_test)
+        accuracy = np.mean(predt == y_test) * 100
+        print(f"Accuracy for {house}: {accuracy}%")
         weights, bias = model.get_weights()
         all_weights[house] = (weights, bias)
 

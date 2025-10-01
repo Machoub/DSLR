@@ -14,13 +14,18 @@ houses = df_cleaned['Hogwarts House'].dropna().unique()
 colors = {'Gryffindor': 'red', 'Slytherin': 'green', 'Hufflepuff': 'yellow', 'Ravenclaw': 'blue'}
 
 sns.set_theme(style="ticks")
-pairplot = sns.pairplot(df_cleaned, hue='Hogwarts House', palette=colors, diag_kind='kde', plot_kws={'alpha':0.5})
-plt.subplots_adjust(left=0.044, bottom=0.052, right=0.993, top=0.986, wspace=0.308, hspace=0.440)
+g = sns.pairplot(
+    df_cleaned,
+    hue='Hogwarts House',
+    palette=colors,
+    diag_kind='kde',
+    plot_kws={'alpha': 0.5}
+)
 
-# 2. Déplace la légende dans l'espace créé
-#    - bbox_to_anchor=(1.05, 0.5) positionne la légende à l'extérieur
-#    - loc='center left' ancre la légende par son côté gauche au point défini
-pairplot.legend.set_bbox_to_anchor((1.05, 0.5))
-pairplot.legend._loc = 'center left'
-plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+# Supprimer complètement la légende
+if g._legend is not None:
+    g._legend.remove()
+
+g.set(xticks=[], yticks=[])
+plt.tight_layout()
 plt.show()
